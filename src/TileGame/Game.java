@@ -28,24 +28,27 @@ public class Game implements Runnable{
 
 	private States.State gameState;
 	private States.State menuState;
-	
+
+	private KeyManager keyManager;
+
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
-		
+		keyManager = new KeyManager();
 	}
 	
 	private void init() {
 		display = new Display (title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 //		testImage1 = ImageLoader.loadImage("/textures/orange.jpg");
 //		testImage2 = ImageLoader.loadImage("/textures/lotus.jpg");
 //		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
 //		sheet = new SpriteSheet(testImage3);
 		Assets.init();
 
-		gameState = new GameState();
-		menuState = new MenuState();
+		gameState = new GameState(this);
+		menuState = new MenuState(this);
 		States.State.setState(gameState);
 	}
 	
@@ -117,9 +120,14 @@ public class Game implements Runnable{
 	int x = 0;
 	private void tick() {
 //		x += 1;
+		keyManager.tick();
 		if(States.State.getState() != null) {
 			States.State.getState().tick();
 		}
+	}
+
+	public KeyManager getKeyManager() {
+		return keyManager;
 	}
 
 	public synchronized void start() {
@@ -138,7 +146,7 @@ public class Game implements Runnable{
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

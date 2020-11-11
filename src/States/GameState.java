@@ -4,13 +4,16 @@ import java.awt.Graphics;
 
 import Entities.Player;
 import Gfx.Assets;
+import TileGame.Game;
+
 
 public class GameState extends State {
 
 	private Player player;
 
-	public GameState() {
-		player = new Player(100,100);
+	public GameState(Game game) {
+		super(game);
+		player = new Player(game,100,100);
 	}
 
 	@Override
