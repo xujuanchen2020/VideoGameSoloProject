@@ -11,6 +11,6 @@ public class Assets {
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/zombie.jpg"));
 		player = sheet.crop(125, 510, 44, 74);
-		
+		dirt = sheet.crop(0, 0, 32, 32);
 	}
 }

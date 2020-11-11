@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.lang.Thread.State;
+
 import Display.Display;
 import Gfx.Assets;
 import Gfx.ImageLoader;
 import Gfx.SpriteSheet;
+import States.GameState;
 
 public class Game implements Runnable{
 	private Display display;
@@ -22,11 +25,25 @@ public class Game implements Runnable{
 	private BufferedImage testImage1, testImage2, testImage3;
 	private SpriteSheet sheet;
 	
+	private States.State gameState;
+	
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
 		
+	}
+	
+	private void init() {
+		display = new Display (title, width, height);
+//		testImage1 = ImageLoader.loadImage("/textures/orange.jpg");
+//		testImage2 = ImageLoader.loadImage("/textures/lotus.jpg");
+//		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
+//		sheet = new SpriteSheet(testImage3);
+		Assets.init();
+		
+		gameState = new GameState();
+		States.State.setState(gameState);
 	}
 	
 	public void run() {
@@ -62,15 +79,6 @@ public class Game implements Runnable{
 		
 		stop();
 	}
-
-	private void init() {
-		display = new Display (title, width, height);
-//		testImage1 = ImageLoader.loadImage("/textures/orange.jpg");
-//		testImage2 = ImageLoader.loadImage("/textures/lotus.jpg");
-//		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
-//		sheet = new SpriteSheet(testImage3);
-		Assets.init();
-	}
 	
 	private void render() {
 		// draw to the screen
@@ -92,7 +100,12 @@ public class Game implements Runnable{
 //		g.drawImage(testImage1, 20, 20, null);
 //		g.drawImage(testImage2, 320, 200, null);
 //		g.drawImage(sheet.crop(125, 510, 44, 74), 5, 5, null);
-		g.drawImage(Assets.player, x, 10, null);
+//		g.drawImage(Assets.player, x, 10, null);
+		
+		if(States.State.getState() != null) {
+			States.State.getState().render(g);
+		}
+		
 		// call it to show on screen
 		bs.show();
 		g.dispose();
@@ -100,7 +113,10 @@ public class Game implements Runnable{
 
 	int x = 0;
 	private void tick() {
-		x += 1;
+//		x += 1;
+		if(States.State.getState() != null) {
+			States.State.getState().tick();
+		}
 	}
 
 	public synchronized void start() {
