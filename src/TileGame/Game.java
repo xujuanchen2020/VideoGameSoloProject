@@ -25,7 +25,7 @@ public class Game implements Runnable{
 	
 	private BufferedImage testImage1, testImage2, testImage3;
 	private SpriteSheet sheet;
-	
+
 	private States.State gameState;
 	private States.State menuState;
 	
@@ -43,7 +43,7 @@ public class Game implements Runnable{
 //		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
 //		sheet = new SpriteSheet(testImage3);
 		Assets.init();
-		
+
 		gameState = new GameState();
 		menuState = new MenuState();
 		States.State.setState(gameState);
