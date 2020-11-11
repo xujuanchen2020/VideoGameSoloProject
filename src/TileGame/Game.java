@@ -11,6 +11,7 @@ import Gfx.Assets;
 import Gfx.ImageLoader;
 import Gfx.SpriteSheet;
 import States.GameState;
+import States.MenuState;
 
 public class Game implements Runnable{
 	private Display display;
@@ -26,6 +27,7 @@ public class Game implements Runnable{
 	private SpriteSheet sheet;
 	
 	private States.State gameState;
+	private States.State menuState;
 	
 	public Game(String title, int width, int height) {
 		this.title = title;
@@ -43,13 +45,14 @@ public class Game implements Runnable{
 		Assets.init();
 		
 		gameState = new GameState();
+		menuState = new MenuState();
 		States.State.setState(gameState);
 	}
 	
 	public void run() {
 		init();
 		
-		int fps = 60;
+		double fps = 60.0;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;
 		long now;
