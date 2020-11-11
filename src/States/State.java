@@ -1,5 +1,7 @@
 package States;
 
+import TileGame.Game;
+
 import java.awt.Graphics;
 
 public abstract class State {
@@ -12,6 +14,12 @@ public abstract class State {
 	
 	public static State getState() {
 		return currentState;
+	}
+
+	protected Game game;
+
+	public State(Game game) {
+		this.game = game;
 	}
 	
 	public abstract void tick();

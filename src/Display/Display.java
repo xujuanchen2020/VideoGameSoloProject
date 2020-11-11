@@ -21,7 +21,7 @@ public class Display {
 	}
 
 	private void createDisplay() {
-		// TODO Auto-generated method stub
+
 		frame = new JFrame(title);
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,12 +33,17 @@ public class Display {
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
-		
+		canvas.setFocusable(false);
+
 		frame.add(canvas);
 		frame.pack();
 	}
 	
 	public Canvas getCanvas() {
 		return canvas;
+	}
+
+	public JFrame getFrame() {
+		return frame;
 	}
 }
