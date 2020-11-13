@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import Entities.Player;
 import Gfx.Assets;
+import Tile.Tile;
 import TileGame.Game;
 
 
@@ -26,5 +27,8 @@ public class GameState extends State {
 	public void render(Graphics g) {
 //		g.drawImage(Assets.dirt, 0, 0, null);
 		player.render(g);
+		Tile.tiles[0].render(g,0,0);
+		Tile.tiles[1].render(g,64,0);
+		Tile.tiles[2].render(g,128,0);
 	}
 }
