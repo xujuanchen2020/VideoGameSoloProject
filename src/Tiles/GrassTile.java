@@ -1,8 +1,6 @@
-package Tile;
+package Tiles;
 
 import Gfx.Assets;
-
-import java.awt.*;
 
 public class GrassTile extends Tile {
     public GrassTile(int id) {

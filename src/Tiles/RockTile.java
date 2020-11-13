@@ -1,4 +1,4 @@
-package Tile;
+package Tiles;
 import Gfx.Assets;
 
 public class RockTile extends Tile {
