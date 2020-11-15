@@ -1,10 +1,8 @@
 package Worlds;
 
-import TileGame.Game;
 import TileGame.Handler;
 import Tiles.Tile;
 import Utils.Utils;
-
 import java.awt.*;
 
 public class World {
@@ -62,5 +60,13 @@ public class World {
                 tiles[x][y] = Utils.parseInt(tokens[(x+y*width)+4]);
             }
         }
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
