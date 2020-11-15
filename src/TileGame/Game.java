@@ -8,6 +8,7 @@ import java.lang.Thread.State;
 
 import Display.Display;
 import Gfx.Assets;
+import Gfx.GameCamera;
 import Gfx.ImageLoader;
 import Gfx.SpriteSheet;
 import States.GameState;
@@ -15,7 +16,7 @@ import States.MenuState;
 
 public class Game implements Runnable{
 	private Display display;
-	public int width, height;
+	private int width, height;
 	public String title;
 	private Thread thread;
 	private Boolean running = false;
@@ -30,6 +31,8 @@ public class Game implements Runnable{
 	private States.State menuState;
 
 	private KeyManager keyManager;
+
+	private GameCamera gameCamera;
 
 	public Game(String title, int width, int height) {
 		this.title = title;
@@ -46,6 +49,7 @@ public class Game implements Runnable{
 //		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
 //		sheet = new SpriteSheet(testImage3);
 		Assets.init();
+		gameCamera = new GameCamera(this,0,0);
 
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
@@ -128,6 +132,18 @@ public class Game implements Runnable{
 
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
 	}
 
 	public synchronized void start() {
