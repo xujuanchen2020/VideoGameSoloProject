@@ -1,15 +1,12 @@
 package TileGame;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.lang.Thread.State;
 
 import Display.Display;
 import Gfx.Assets;
 import Gfx.GameCamera;
-import Gfx.ImageLoader;
 import Gfx.SpriteSheet;
 import States.GameState;
 import States.MenuState;
@@ -34,6 +31,8 @@ public class Game implements Runnable{
 
 	private GameCamera gameCamera;
 
+	private Handler handler;
+
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
@@ -44,15 +43,11 @@ public class Game implements Runnable{
 	private void init() {
 		display = new Display (title, width, height);
 		display.getFrame().addKeyListener(keyManager);
-//		testImage1 = ImageLoader.loadImage("/textures/orange.jpg");
-//		testImage2 = ImageLoader.loadImage("/textures/lotus.jpg");
-//		testImage3 = ImageLoader.loadImage("/textures/zombie.jpg");
-//		sheet = new SpriteSheet(testImage3);
 		Assets.init();
 		gameCamera = new GameCamera(this,0,0);
-
-		gameState = new GameState(this);
-		menuState = new MenuState(this);
+		handler = new Handler(this);
+		gameState = new GameState(handler);
+		menuState = new MenuState(handler);
 		States.State.setState(gameState);
 	}
 	
@@ -102,15 +97,6 @@ public class Game implements Runnable{
 		
 		// clear the screen
 		g.clearRect(0, 0, width, height);
-		
-//		g.setColor(Color.red);
-//		g.fillRect(10, 50, 50, 80);		
-//		g.setColor(Color.green);
-//		g.fillRect(0, 0, 10, 10);		
-//		g.drawImage(testImage1, 20, 20, null);
-//		g.drawImage(testImage2, 320, 200, null);
-//		g.drawImage(sheet.crop(125, 510, 44, 74), 5, 5, null);
-//		g.drawImage(Assets.player, x, 10, null);
 		
 		if(States.State.getState() != null) {
 			States.State.getState().render(g);

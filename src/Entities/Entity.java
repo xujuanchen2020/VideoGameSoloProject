@@ -1,16 +1,17 @@
 package Entities;
 
 import TileGame.Game;
+import TileGame.Handler;
 
 import java.awt.*;
 
 public abstract class Entity {
-    protected Game game;
+    protected Handler handler;
     protected double x, y;
     protected int width, height;
 
-    public Entity(Game game, double x, double y, int width, int height) {
-        this.game = game;
+    public Entity(Handler handler, double x, double y, int width, int height) {
+        this.handler = handler;
         this.x = x;
         this.y = y;
         this.width = width;

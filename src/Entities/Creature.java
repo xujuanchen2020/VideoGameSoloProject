@@ -1,6 +1,7 @@
 package Entities;
 
 import TileGame.Game;
+import TileGame.Handler;
 
 public abstract class Creature extends Entity {
 
@@ -16,8 +17,8 @@ public abstract class Creature extends Entity {
     public static final double DEFAULT_SPEED = 3.0;
     public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 
-    public Creature(Game game, double x, double y, int width, int height) {
-        super(game, x, y, width, height);
+    public Creature(Handler handler, double x, double y, int width, int height) {
+        super(handler, x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
