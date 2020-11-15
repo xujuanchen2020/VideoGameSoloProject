@@ -1,5 +1,8 @@
 package Worlds;
 
+import Entities.EntityManager;
+import Entities.Player;
+import Entities.Tree;
 import TileGame.Handler;
 import Tiles.Tile;
 import Utils.Utils;
@@ -9,14 +12,22 @@ public class World {
     private Handler handler;
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
+    private EntityManager entityManager;
 
     public World(Handler handler, String path) {
         this.handler = handler;
+        entityManager = new EntityManager(handler, new Player(handler,100,100));
+        entityManager.addEntity(new Tree(handler, 100, 250));
+        entityManager.addEntity(new Tree(handler, 100, 350));
+        entityManager.addEntity(new Tree(handler, 100, 450));
+
         loadWorld(path);
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
     }
 
     public void tick() {
-
+        entityManager.tick();
     }
 
     public void render(Graphics g) {
@@ -32,6 +43,7 @@ public class World {
                         (int)(y*Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
+        entityManager.render(g);
     }
 
     public Tile getTile(int x, int y) {

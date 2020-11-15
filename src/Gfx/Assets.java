@@ -14,6 +14,7 @@ public class Assets {
 		dirt = sheet.crop(0, 0, 32, 32);
 		grass = sheetObject.crop(200, 300, 64, 64);
 		stone = sheetSprite2.crop(8,165,64,64);
+		tree = sheetSprite2.crop(690,75,64,64);
 
 		player_down = new BufferedImage[2];
 		player_up = new BufferedImage[2];
