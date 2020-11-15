@@ -22,40 +22,32 @@ public class World {
     }
 
     public void render(Graphics g) {
-        int xStart = (int)Math.max(0, handler.getGameCamera().getxOffset()/Tile.TITLE_WIDTH);
-        int xEnd = (int)Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth())/Tile.TITLE_WIDTH+1);
+        int xStart = (int)Math.max(0, handler.getGameCamera().getxOffset()/Tile.TILE_WIDTH);
+        int xEnd = (int)Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth())/Tile.TILE_WIDTH+1);
         int yStart = (int)Math.max(0, handler.getGameCamera().getyOffset()/ Tile.TILE_HEIGHT);
         int yEnd = (int)Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight())/Tile.TILE_HEIGHT+1);
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
                 getTile(x, y).render(g,
-                        (int)(x*Tile.TITLE_WIDTH - handler.getGameCamera().getxOffset()),
+                        (int)(x*Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
                         (int)(y*Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
     }
 
     public Tile getTile(int x, int y) {
+        if(x < 0 || y < 0 || x >= width || y >= height){
+            return Tile.grassTile;
+        }
         Tile t = Tile.tiles[tiles[x][y]];
-
         if (t == null){
             return Tile.dirtTile;
         }
-
         return t;
     }
 
     private void loadWorld(String path) {
-//        width = 64;
-//        height = 64;
-//        tiles = new int[width][height];
-//
-//        for(int x = 0; x < width; x++) {
-//            for (int y = 0; y < height; y++) {
-//                tiles[x][y] = 0;
-//            }
-//        }
 
         String file = Utils.loadFileAsString(path);
         String[] tokens = file.split("\\s+");
