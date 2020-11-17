@@ -1,10 +1,10 @@
 package States;
 
 import Gfx.Assets;
-import TileGame.ClickListener;
+import Utils.ClickListener;
 import TileGame.Handler;
-import TileGame.UIImageButton;
-import TileGame.UIManager;
+import Utils.UIImageButton;
+import Utils.UIManager;
 
 import java.awt.*;
 

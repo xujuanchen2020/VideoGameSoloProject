@@ -1,4 +1,6 @@
-package TileGame;
+package Utils;
+
+import TileGame.Handler;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

@@ -1,4 +1,4 @@
-package TileGame;
+package Utils;
 
 public interface ClickListener {
 
