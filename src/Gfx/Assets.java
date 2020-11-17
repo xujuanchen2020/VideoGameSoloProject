@@ -6,6 +6,7 @@ public class Assets {
 	private  static final int width = 64, height = 64;
 	public static BufferedImage player, dirt, grass, stone, tree;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
+	public static BufferedImage[] btn_start;
 
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/zombie.jpg"));
@@ -32,6 +33,10 @@ public class Assets {
 
 		player_right[0] = sheet.crop(475, 510, 44, 74);
 		player_right[1] = sheet.crop(545, 510, 44, 74);
+
+		btn_start = new BufferedImage[2];
+		btn_start[0] = sheet.crop(width*5, height*4, width*2, height);
+		btn_start[1] = sheet.crop(width*6, height*5, width*2, height);
 
 	}
 
