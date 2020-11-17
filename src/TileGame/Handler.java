@@ -43,4 +43,8 @@ public class Handler {
         this.world = world;
     }
 
+    public MouseManager getMouseManager() {
+        return game.getMouseManager();
+    }
+
 }

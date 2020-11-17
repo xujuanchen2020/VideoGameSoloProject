@@ -24,10 +24,11 @@ public class Game implements Runnable{
 	private BufferedImage testImage1, testImage2, testImage3;
 	private SpriteSheet sheet;
 
-	private States.State gameState;
-	private States.State menuState;
+	public States.State gameState;
+	public States.State menuState;
 
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 
 	private GameCamera gameCamera;
 
@@ -38,11 +39,16 @@ public class Game implements Runnable{
 		this.width = width;
 		this.height = height;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	private void init() {
 		display = new Display (title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 
 		handler = new Handler(this);
@@ -50,7 +56,7 @@ public class Game implements Runnable{
 
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		States.State.setState(gameState);
+		States.State.setState(menuState);
 	}
 	
 	public void run() {
@@ -120,6 +126,10 @@ public class Game implements Runnable{
 
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 
 	public GameCamera getGameCamera() {
