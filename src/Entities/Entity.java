@@ -12,7 +12,7 @@ public abstract class Entity {
     protected Rectangle bounds;
     protected boolean active = true;
 
-    public static final int DEFAULT_HEALTH = 10;
+    public static final int DEFAULT_HEALTH = 3;
 
     public Entity(Handler handler, double x, double y, int width, int height) {
         health = DEFAULT_HEALTH;

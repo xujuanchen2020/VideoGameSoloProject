@@ -2,6 +2,7 @@ package Entities;
 
 import Gfx.Assets;
 import TileGame.Handler;
+import TileGame.Item;
 import Tiles.Tile;
 
 import java.awt.*;
@@ -22,7 +23,7 @@ public class Rock extends StaticEntity{
 
     @Override
     public void die() {
-
+        handler.getWorld().getItemManager().addItem(Item.rockItem.createNew((int)x,(int)y));
     }
 
     @Override
