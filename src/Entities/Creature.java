@@ -4,18 +4,14 @@ import TileGame.Handler;
 import Tiles.Tile;
 
 public abstract class Creature extends Entity {
-
-    protected int health;
     protected double speed;
     protected double xMove, yMove;
 
-    public static final int DEFAULT_HEALTH = 10;
     public static final double DEFAULT_SPEED = 3.0;
     public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 
     public Creature(Handler handler, double x, double y, int width, int height) {
         super(handler, x, y, width, height);
-        health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
