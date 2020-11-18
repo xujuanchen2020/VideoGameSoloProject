@@ -16,6 +16,11 @@ public class StaticEntity extends Entity {
     }
 
     @Override
+    public void die() {
+        System.out.println("You Lose");
+    }
+
+    @Override
     public void render(Graphics g) {
 
     }

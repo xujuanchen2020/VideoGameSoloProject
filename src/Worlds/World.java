@@ -2,6 +2,7 @@ package Worlds;
 
 import Entities.EntityManager;
 import Entities.Player;
+import Entities.Rock;
 import Entities.Tree;
 import TileGame.Handler;
 import Tiles.Tile;
@@ -19,7 +20,7 @@ public class World {
         entityManager = new EntityManager(handler, new Player(handler,100,100));
         entityManager.addEntity(new Tree(handler, 100, 250));
         entityManager.addEntity(new Tree(handler, 100, 350));
-        entityManager.addEntity(new Tree(handler, 100, 450));
+        entityManager.addEntity(new Rock(handler, 100, 450));
 
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
