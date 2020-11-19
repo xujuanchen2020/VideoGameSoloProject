@@ -45,6 +45,13 @@ public class Item {
         g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
     }
 
+    public Item createNew(int count){
+        Item i = new Item(texture, name, id);
+        i.setPickedUp(true);
+        i.setCount(count);
+        return i;
+    }
+
     public Item createNew(int x, int y){
         Item i = new Item(texture, name, id);
         i.setPosition(x, y);
@@ -115,5 +122,8 @@ public class Item {
         return pickedUp;
     }
 
+    public void setPickedUp(boolean pickedUp){
+        this.pickedUp = pickedUp;
+    }
 
 }

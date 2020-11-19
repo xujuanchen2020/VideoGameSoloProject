@@ -54,6 +54,10 @@ public class Player extends Creature {
         inventory.render(g);
     }
 
+    public void postRender(Graphics g){
+        inventory.render(g);
+    }
+
     private void checkAttack() {
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         ;lastAttackTimer = System.currentTimeMillis();
@@ -61,6 +65,8 @@ public class Player extends Creature {
             return;
         }
 
+        if(inventory.isActive())
+            return;
         Rectangle cb = getCollisionBounds(0,0);
         Rectangle ar = new Rectangle();
         int arSize = 20;
@@ -101,6 +107,8 @@ public class Player extends Creature {
     }
 
     private void getInput() {
+        if(inventory.isActive())
+            return;
         xMove = 0;
         yMove = 0;
 
