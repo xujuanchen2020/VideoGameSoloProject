@@ -2,6 +2,7 @@ package Entities;
 
 import Gfx.Animation;
 import Gfx.Assets;
+import Inventory.Inventory;
 import TileGame.Handler;
 
 import java.awt.*;
@@ -10,6 +11,8 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature {
     private Animation animationDown, animationUp, animationLeft, animationRight;
     private long lastAttackTimer, attackCooldown = 500, attackTimer = attackCooldown;
+    private Inventory inventory;
+
     public Player(Handler handler, double x, double y) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         bounds.x = 22;
@@ -22,6 +25,8 @@ public class Player extends Creature {
         animationUp = new Animation(500,Assets.player_up);
         animationLeft = new Animation(500,Assets.player_left);
         animationRight = new Animation(500,Assets.player_right);
+
+        inventory = new Inventory(handler);
     }
 
     @Override
@@ -36,6 +41,21 @@ public class Player extends Creature {
         handler.getGameCamera().centerOnEntity(this);
 
         checkAttack();
+
+        inventory.tick();
+    }
+
+    @Override
+    public void render(Graphics g) {
+        g.drawImage(getCurrentAnimationFrame(),
+                (int)(x - handler.getGameCamera().getxOffset()),
+                (int)(y - handler.getGameCamera().getyOffset()),
+                width, height,null);
+        inventory.render(g);
+    }
+
+    public void postRender(Graphics g){
+        inventory.render(g);
     }
 
     private void checkAttack() {
@@ -45,6 +65,8 @@ public class Player extends Creature {
             return;
         }
 
+        if(inventory.isActive())
+            return;
         Rectangle cb = getCollisionBounds(0,0);
         Rectangle ar = new Rectangle();
         int arSize = 20;
@@ -85,6 +107,8 @@ public class Player extends Creature {
     }
 
     private void getInput() {
+        if(inventory.isActive())
+            return;
         xMove = 0;
         yMove = 0;
 
@@ -102,20 +126,6 @@ public class Player extends Creature {
         }
     }
 
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(getCurrentAnimationFrame(),
-                (int)(x - handler.getGameCamera().getxOffset()),
-                (int)(y - handler.getGameCamera().getyOffset()),
-                width, height,null);
-
-//        g.setColor(Color.RED);
-//        g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
-//                (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-//                bounds.width,
-//                bounds.height);
-    }
-
     private BufferedImage getCurrentAnimationFrame() {
         if(xMove < 0) {
             return animationLeft.getCurrentFrame();
@@ -127,4 +137,14 @@ public class Player extends Creature {
             return animationDown.getCurrentFrame();
         }
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+
 }
