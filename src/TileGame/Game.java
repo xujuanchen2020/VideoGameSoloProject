@@ -31,7 +31,6 @@ public class Game implements Runnable{
 	private MouseManager mouseManager;
 
 	private GameCamera gameCamera;
-
 	private Handler handler;
 
 	public Game(String title, int width, int height) {
@@ -83,14 +82,21 @@ public class Game implements Runnable{
 				delta--;
 			}
 			
-			if (timer >= 1000000000) {
-				System.out.println("Ticks and Frames: " + ticks);
-				ticks = 0;
-				timer = 0;
-			}
+//			if (timer >= 1000000000) {
+//				System.out.println("Ticks and Frames: " + ticks);
+//				ticks = 0;
+//				timer = 0;
+//			}
 		}
 		
 		stop();
+	}
+
+	private void tick() {
+		keyManager.tick();
+		if(States.State.getState() != null) {
+			States.State.getState().tick();
+		}
 	}
 	
 	private void render() {
@@ -113,15 +119,6 @@ public class Game implements Runnable{
 		// call it to show on screen
 		bs.show();
 		g.dispose();
-	}
-
-	int x = 0;
-	private void tick() {
-//		x += 1;
-		keyManager.tick();
-		if(States.State.getState() != null) {
-			States.State.getState().tick();
-		}
 	}
 
 	public KeyManager getKeyManager() {
@@ -151,12 +148,11 @@ public class Game implements Runnable{
 		thread = new Thread(this);
 		thread.start();
 	}
-	
+
 	public synchronized void stop() {
 		if (!running)
 			return;
 		running = false;
-		
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
@@ -164,6 +160,4 @@ public class Game implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
-	
 }

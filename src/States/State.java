@@ -1,6 +1,5 @@
 package States;
 
-import TileGame.Game;
 import TileGame.Handler;
 
 import java.awt.Graphics;

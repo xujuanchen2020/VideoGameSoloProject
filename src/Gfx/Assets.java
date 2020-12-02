@@ -2,7 +2,6 @@ package Gfx;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Assets {
 	private  static final int width = 64, height = 64;
@@ -16,42 +15,48 @@ public class Assets {
 
 	public static void init() {
 		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf",28);
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/zombie.jpg"));
-		SpriteSheet sheetObject = new SpriteSheet(ImageLoader.loadImage("/textures/object.jpg"));
-		SpriteSheet sheetSprite2 = new SpriteSheet(ImageLoader.loadImage("/textures/sprite2.jpg"));
-		inventoryScreen = ImageLoader.loadImage("/textures/orange.jpg");
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/grassMap.png"));
+		grass = sheet.crop(width*4,height*9,width,height);
 
-		wood = sheet.crop(width,height,width,height);
+		dirt = ImageLoader.loadImage("/textures/stoneBlock.png");
+		rock = ImageLoader.loadImage("/textures/Crate.png");
+		tree = ImageLoader.loadImage("/textures/Tree.png");
+		wood = ImageLoader.loadImage("/textures/stoneBlock.png");
 
-		dirt = sheet.crop(0, 0, 32, 32);
-		grass = sheetObject.crop(200, 300, 64, 64);
-		rock = sheetSprite2.crop(8,165,64,64);
-		tree = sheetSprite2.crop(690,75,64,64);
+		inventoryScreen = ImageLoader.loadImage("/textures/board.png");
 
-		player_down = new BufferedImage[2];
-		player_up = new BufferedImage[2];
-		player_left = new BufferedImage[2];
-		player_right = new BufferedImage[2];
+		player_down = new BufferedImage[5];
+		player_up = new BufferedImage[5];
+		player_left = new BufferedImage[5];
+		player_right = new BufferedImage[5];
 
-//		player_down[0] = sheet.crop(55, 510, 44, 74);
-//		player_down[1] = sheet.crop(125, 510, 44, 74);
+		player_down[0] = ImageLoader.loadImage("/textures/bl_dn_0.gif");
+		player_down[1] = ImageLoader.loadImage("/textures/bl_dn_1.gif");
+		player_down[2] = ImageLoader.loadImage("/textures/bl_dn_2.gif");
+		player_down[3] = ImageLoader.loadImage("/textures/bl_dn_3.gif");
+		player_down[4] = ImageLoader.loadImage("/textures/bl_dn_4.gif");
 
-		player_down[0] = ImageLoader.loadImage("/textures/dead(1).png");
-		player_down[1] = ImageLoader.loadImage("/textures/dead(2).png");
+		player_up[0] = ImageLoader.loadImage("/textures/bl_up_0.gif");
+		player_up[1] = ImageLoader.loadImage("/textures/bl_up_1.gif");
+		player_up[2] = ImageLoader.loadImage("/textures/bl_up_2.gif");
+		player_up[3] = ImageLoader.loadImage("/textures/bl_up_3.gif");
+		player_up[4] = ImageLoader.loadImage("/textures/bl_up_4.gif");
 
-		player_up[0] = sheet.crop(195, 510, 44, 74);
-		player_up[1] = sheet.crop(265, 510, 44, 74);
+		player_left[0] = ImageLoader.loadImage("/textures/bl_lt_0.gif");
+		player_left[1] = ImageLoader.loadImage("/textures/bl_lt_1.gif");
+		player_left[2] = ImageLoader.loadImage("/textures/bl_lt_2.gif");
+		player_left[3] = ImageLoader.loadImage("/textures/bl_lt_3.gif");
+		player_left[4] = ImageLoader.loadImage("/textures/bl_lt_4.gif");
 
-		player_left[0] = sheet.crop(335, 510, 44, 74);
-		player_left[1] = sheet.crop(405, 510, 44, 74);
-
-		player_right[0] = sheet.crop(475, 510, 44, 74);
-		player_right[1] = sheet.crop(545, 510, 44, 74);
+		player_right[0] = ImageLoader.loadImage("/textures/bl_rt_0.gif");
+		player_right[1] = ImageLoader.loadImage("/textures/bl_rt_1.gif");
+		player_right[2] = ImageLoader.loadImage("/textures/bl_rt_2.gif");
+		player_right[3] = ImageLoader.loadImage("/textures/bl_rt_3.gif");
+		player_right[4] = ImageLoader.loadImage("/textures/bl_rt_4.gif");
 
 		btn_start = new BufferedImage[2];
-		btn_start[0] = sheet.crop(width*5, height*4, width*2, height);
-		btn_start[1] = sheet.crop(width*6, height*5, width*2, height);
-
+		btn_start[0] = ImageLoader.loadImage("/textures/startButton.gif");
+		btn_start[1] = ImageLoader.loadImage("/textures/yes.png");
 	}
 
 }

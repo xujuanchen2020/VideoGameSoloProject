@@ -2,11 +2,8 @@ package States;
 
 import java.awt.Graphics;
 
-import Entities.Player;
-import Entities.Tree;
 import TileGame.Handler;
 import Worlds.World;
-
 
 public class GameState extends State {
 	private World world;

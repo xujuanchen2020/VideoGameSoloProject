@@ -14,7 +14,7 @@ public class Player extends Creature {
     private Inventory inventory;
 
     public Player(Handler handler, double x, double y) {
-        super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+        super(handler, x, y, 80, 96);
         bounds.x = 22;
         bounds.y = 44;
         bounds.width = 19;
