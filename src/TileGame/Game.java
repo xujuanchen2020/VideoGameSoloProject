@@ -61,24 +61,23 @@ public class Game implements Runnable{
 	public void run() {
 		init();
 		
-		double fps = 60.0;
-		double timePerTick = 1000000000 / fps;
+		double fps = 60.0;  //tickes per second
+		double timePerTick = 1000000000 / fps; // nanoseconds per tick
 		double delta = 0;
-		long now;
 		long lastTime = System.nanoTime();
-		long timer = 0;
-		int ticks = 0;
+//		long timer = 0;
+//		int ticks = 0;
 		
 		while(running) {
-			now = System.nanoTime();
-			delta += (now - lastTime)/timePerTick;
-			timer += now - lastTime;
+			long now = System.nanoTime();
+			delta += (now - lastTime)/timePerTick; //0.00024++  ticks
+//			timer += now - lastTime;
 			lastTime = now;
 			
-			if (delta >= 1) {
+			if (delta >= 1) { // if delta reached 1 tick
 				tick();
 				render();
-				ticks++;
+//				ticks++;
 				delta--;
 			}
 			
@@ -156,7 +155,6 @@ public class Game implements Runnable{
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}

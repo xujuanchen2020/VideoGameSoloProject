@@ -8,7 +8,7 @@ public abstract class Creature extends Entity {
     protected double xMove, yMove;
 
     public static final double DEFAULT_SPEED = 3.0;
-    public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
+//    public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 
     public Creature(Handler handler, double x, double y, int width, int height) {
         super(handler, x, y, width, height);
@@ -44,7 +44,6 @@ public abstract class Creature extends Entity {
             }else{
                 x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
             }
-
         }
     }
 
@@ -68,7 +67,6 @@ public abstract class Creature extends Entity {
             }else{
                 y = ty * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
             }
-
         }
     }
 

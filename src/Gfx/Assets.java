@@ -55,8 +55,8 @@ public class Assets {
 		player_right[4] = ImageLoader.loadImage("/textures/bl_rt_4.gif");
 
 		btn_start = new BufferedImage[2];
-		btn_start[0] = ImageLoader.loadImage("/textures/startButton.gif");
-		btn_start[1] = ImageLoader.loadImage("/textures/yes.png");
+		btn_start[0] = ImageLoader.loadImage("/textures/startButton_1.png");
+		btn_start[1] = ImageLoader.loadImage("/textures/startButton_2.png");
 	}
 
 }
