@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 public class Display {
 	private JFrame frame;
 	private Canvas canvas;
-	
 	private String title;
 	private int width, height;
 	
@@ -21,7 +20,6 @@ public class Display {
 	}
 
 	private void createDisplay() {
-
 		frame = new JFrame(title);
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

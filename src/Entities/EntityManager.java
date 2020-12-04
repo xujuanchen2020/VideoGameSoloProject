@@ -11,6 +11,7 @@ public class EntityManager {
     private Handler handler;
     private Player player;
     private ArrayList<Entity> entities;
+    // which entity is in front
     private Comparator<Entity> renderSorter = new Comparator<Entity>() {
         @Override
         public int compare(Entity a, Entity b) {
@@ -36,6 +37,11 @@ public class EntityManager {
                 it.remove();
         }
         entities.sort(renderSorter);
+
+//        for(int i=0; i<entities.size();i++){
+//            Entity e = entities.get(i);
+//            e.tick();
+//        }
     }
 
     public void render(Graphics g) {

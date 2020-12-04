@@ -31,7 +31,6 @@ public class Game implements Runnable{
 	private MouseManager mouseManager;
 
 	private GameCamera gameCamera;
-
 	private Handler handler;
 
 	public Game(String title, int width, int height) {
@@ -62,35 +61,41 @@ public class Game implements Runnable{
 	public void run() {
 		init();
 		
-		double fps = 60.0;
-		double timePerTick = 1000000000 / fps;
+		double fps = 60.0;  //tickes per second
+		double timePerTick = 1000000000 / fps; // nanoseconds per tick
 		double delta = 0;
-		long now;
 		long lastTime = System.nanoTime();
-		long timer = 0;
-		int ticks = 0;
+//		long timer = 0;
+//		int ticks = 0;
 		
 		while(running) {
-			now = System.nanoTime();
-			delta += (now - lastTime)/timePerTick;
-			timer += now - lastTime;
+			long now = System.nanoTime();
+			delta += (now - lastTime)/timePerTick; //0.00024++  ticks
+//			timer += now - lastTime;
 			lastTime = now;
 			
-			if (delta >= 1) {
+			if (delta >= 1) { // if delta reached 1 tick
 				tick();
 				render();
-				ticks++;
+//				ticks++;
 				delta--;
 			}
 			
-			if (timer >= 1000000000) {
-				System.out.println("Ticks and Frames: " + ticks);
-				ticks = 0;
-				timer = 0;
-			}
+//			if (timer >= 1000000000) {
+//				System.out.println("Ticks and Frames: " + ticks);
+//				ticks = 0;
+//				timer = 0;
+//			}
 		}
 		
 		stop();
+	}
+
+	private void tick() {
+		keyManager.tick();
+		if(States.State.getState() != null) {
+			States.State.getState().tick();
+		}
 	}
 	
 	private void render() {
@@ -113,15 +118,6 @@ public class Game implements Runnable{
 		// call it to show on screen
 		bs.show();
 		g.dispose();
-	}
-
-	int x = 0;
-	private void tick() {
-//		x += 1;
-		keyManager.tick();
-		if(States.State.getState() != null) {
-			States.State.getState().tick();
-		}
 	}
 
 	public KeyManager getKeyManager() {
@@ -151,19 +147,15 @@ public class Game implements Runnable{
 		thread = new Thread(this);
 		thread.start();
 	}
-	
+
 	public synchronized void stop() {
 		if (!running)
 			return;
 		running = false;
-		
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}
-	
-	
 }

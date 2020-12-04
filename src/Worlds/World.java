@@ -19,17 +19,19 @@ public class World {
 
     public World(Handler handler, String path) {
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler,100,100));
-        entityManager.addEntity(new Tree(handler, 100, 250));
-        entityManager.addEntity(new Tree(handler, 100, 350));
-        entityManager.addEntity(new Rock(handler, 100, 450));
-        entityManager.addEntity(new Tree(handler, 500, 350));
-        entityManager.addEntity(new Rock(handler, 500, 450));
-
-        itemManager = new ItemManager(handler);
+        entityManager = new EntityManager(handler, new Player(handler,400,100));
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
+
+        entityManager.addEntity(new Tree(handler, 200, 250));
+        entityManager.addEntity(new Tree(handler, 300, 700));
+        entityManager.addEntity(new Rock(handler, 200, 600));
+        entityManager.addEntity(new Tree(handler, 1000, 700));
+        entityManager.addEntity(new Rock(handler, 1100, 400));
+
+        itemManager = new ItemManager(handler);
+
     }
 
     public void tick() {

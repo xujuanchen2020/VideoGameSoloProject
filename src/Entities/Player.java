@@ -14,11 +14,11 @@ public class Player extends Creature {
     private Inventory inventory;
 
     public Player(Handler handler, double x, double y) {
-        super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-        bounds.x = 22;
-        bounds.y = 44;
-        bounds.width = 19;
-        bounds.height =19;
+        super(handler, x, y, 128, 128);
+        bounds.x = 14;
+        bounds.y = 32;
+        bounds.width = 82;
+        bounds.height = 82;
 
         //animation
         animationDown = new Animation(500,Assets.player_down);
@@ -52,6 +52,13 @@ public class Player extends Creature {
                 (int)(y - handler.getGameCamera().getyOffset()),
                 width, height,null);
         inventory.render(g);
+
+        g.setColor(Color.red);
+        g.drawRect(
+                (int)(x+bounds.x- handler.getGameCamera().getxOffset()),
+                (int)(y+bounds.y- handler.getGameCamera().getyOffset()),
+                bounds.width,
+                bounds.height);
     }
 
     public void postRender(Graphics g){

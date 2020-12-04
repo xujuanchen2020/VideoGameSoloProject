@@ -9,12 +9,12 @@ import java.awt.*;
 
 public class Tree extends StaticEntity {
     public Tree(Handler handler, double x, double y) {
-        super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
+        super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT*2);
 
-        bounds.x = 10;
-        bounds.y = (int)(height/1.5f);
-        bounds.width = width -20;
-        bounds.height = (int)(height-height/1.5f);
+        bounds.x = 50;
+        bounds.y = 158;
+        bounds.width = 40;
+        bounds.height = 96;
     }
 
     @Override
@@ -33,5 +33,12 @@ public class Tree extends StaticEntity {
                 (int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()),
                 width, height, null);
+
+        g.setColor(Color.red);
+        g.drawRect(
+                (int)(x+bounds.x- handler.getGameCamera().getxOffset()),
+                (int)(y+bounds.y- handler.getGameCamera().getyOffset()),
+                bounds.width,
+                bounds.height);
     }
 }

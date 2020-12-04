@@ -1,7 +1,6 @@
 package Gfx;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 
 public class Animation {
     private int speed, index;
